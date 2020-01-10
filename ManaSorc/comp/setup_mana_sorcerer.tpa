@@ -74,7 +74,7 @@ ADD_KIT ~D5_MANA_SORCERER~
 ~override/d5_mana.2da~
 
 //RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_M_E K_M_H K_M_HE K_M_G K_M_D K_M_HL K_M_HO~
+~K_M_E K_M_H K_M_HE~
 
 //UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
 //CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
@@ -317,7 +317,7 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5man-9.spl~ BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 233 target = 1 parameter1 = (0 - 9) parameter2 = (109 + (0x10000 * 1)) timing = 1 END
 END
 
-APPEND ~d5_mana.2da~ ~MANA_PTS    AP_D5MAN3A  AP_D5MAN3B  AP_D5MAN3C  AP_D5MAN3D  AP_D5MAN3E  AP_D5MAN3F  AP_D5MAN3G  AP_D5MAN3H  AP_D5MAN3I  AP_D5MAN3J  AP_D5MAN3K  AP_D5MAN3L  AP_D5MAN3M  AP_D5MAN3N  AP_D5MAN3O  AP_D5MAN3P  AP_D5MAN3Q  AP_D5MAN3R  AP_D5MAN3S  AP_D5MAN3T  AP_D5MAN2A  AP_D5MAN2B  AP_D5MAN2C  AP_D5MAN2D  AP_D5MAN2E  AP_D5MAN2F  AP_D5MAN2G  AP_D5MAN2H  AP_D5MAN2I  AP_D5MAN2J  AP_D5MAN2K  AP_D5MAN2L  AP_D5MAN2M  AP_D5MAN2N  AP_D5MAN2O  AP_D5MAN2P  AP_D5MAN2Q  AP_D5MAN2R  AP_D5MAN2S  AP_D5MAN2T  ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
+APPEND ~d5_mana.2da~ ~MANA_PTS    AP_D5MAN3A  AP_D5MAN3B  AP_D5MAN3C  AP_D5MAN3D  AP_D5MAN3E  AP_D5MAN3F  AP_D5MAN3G  AP_D5MAN3H  AP_D5MAN3I  AP_D5MAN3J  AP_D5MAN3K  AP_D5MAN3L  AP_D5MAN3M  AP_D5MAN3N  AP_D5MAN3O  AP_D5MAN3P  AP_D5MAN3Q  AP_D5MAN3R  AP_D5MAN3S  AP_D5MAN3T  AP_D5MAN2A  AP_D5MAN2B  AP_D5MAN2C  AP_D5MAN2D  AP_D5MAN2E  AP_D5MAN2F  AP_D5MAN2G  AP_D5MAN2H  AP_D5MAN2I  AP_D5MAN2J  AP_D5MAN2K  AP_D5MAN2L  AP_D5MAN2M  AP_D5MAN2N  AP_D5MAN2O  AP_D5MAN2P  AP_D5MAN2Q  AP_D5MAN2R  AP_D5MAN2S  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
 ~
 
 
@@ -338,7 +338,7 @@ COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5mana.spl~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 143 target = 1 parameter1 = 14 timing = 9 STR_VAR resource = ~d5mana~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5mana1~ END
 
-APPEND ~d5_mana.2da~ ~LEARNSPLS   GA_D5MANA1  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+APPEND ~d5_mana.2da~ ~LEARNSPLS   GA_D5MANA   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 
 //clone arcane spells_________________________________________________________________
