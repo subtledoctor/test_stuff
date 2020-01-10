@@ -336,7 +336,7 @@ COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5mana.spl~
   WRITE_SHORT 0x1c 4
   LPF ALTER_SPELL_HEADER INT_VAR target = 5 location = 4 STR_VAR icon = ~spcl919b~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 143 target = 1 parameter1 = 14 timing = 9 STR_VAR resource = ~d5mana~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5mana1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5mana~ END
 
 APPEND ~d5_mana.2da~ ~LEARNSPLS   GA_D5MANA   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
