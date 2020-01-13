@@ -600,6 +600,16 @@ Disadvantages:
 - May not use the Identify spell.
 - May not use Sequencer or Contingency spells.
 ~
+@17085 = ~Change casting method~
+@17091 = ~How would you like to cast spells?~
+@17092 = ~With normal sorcerer spell slots~
+@17093 = ~With mana points~
+@17094 = ~No change - you will have a certain number of spell slots for each spell level.~
+@17095 = ~Choose to stay the same~
+@17096 = ~Make a different choice~
+@17097 = ~Cast by mana points - you will have a store of mana which can be used to cast spells of any level. You will learn spells by using an item ability, instead of through the normal level-up screen.~
+@17098 = ~Choose casting by mana points~
+
 @6005   = ~Spontaneous Casting~
 @6006   = ~Cancel Spontaneous Conversion~
 //

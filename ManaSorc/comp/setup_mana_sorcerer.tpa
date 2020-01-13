@@ -12,10 +12,10 @@ DEFINE_ACTION_FUNCTION mana_sorcerer BEGIN
 //INCLUDE ~ManaSorc/lib/qd_multiclass.tpa~
 
 // TO DO:
-// - what about metamagic? --> looks like it can only be done with no cost to fill... see new innate metamagic subcomponent
-// - ...hmm, it's not working :(
-// - ...even if it does, would still have to use the old way for mages and single-class sorcs :(
-// - what about Identify?  --> looks like in cannot be done by any method
+// - could make it a real sorcerer kit, but would need to mess with SPLSRCKN for all sorcerers
+// - instead, make a dummy sorcerer kit...
+// - ...that changes to the mana sorcerer *mage* kit when you cast "initialize"
+// - ...and set that mage kit to use a kit usability code that blocks all mage spells
 
 //base .2da file
 //
@@ -25,6 +25,7 @@ DEFINE_ACTION_FUNCTION mana_sorcerer BEGIN
 ABILITY     ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
 >>>>>>>>
 COPY ~d5/d5_mana.2da~ ~override/d5_mana.2da~
+COPY ~d5/d5_mana.2da~ ~override/d5_zmana.2da~
 
 //__________________________________________________________________________________
 
@@ -74,13 +75,13 @@ ADD_KIT ~D5_MANA_SORCERER~
 ~override/d5_mana.2da~
 
 //RACIAL KIT AVAILABILITY_____________________________________________________________
-~K_M_E K_M_H K_M_HE~
+~~
 
 //UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
-//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
+//CLASSES: Mage = 1, Fighter = 2, Cleric = 3, Thief = 4, Bard = 5
 //         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
 //         Monk = 20, FC = 8, CT = 15, CR = 18, FM = 7, CM = 14, MT = 13
-~0x00004000 1~
+~0x00020000 1~
 
 //HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
 ~So0~
@@ -101,31 +102,133 @@ ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
 			briefdesc = RESOLVE_STR_REF (@17083)
 		STR_VAR
 			kit_name = D5_MANA_SORCERER   
-			clswpbon = ~1 0 3~
+			clswpbon = ~0 0 3~
+			hpclass = ~HPWIZ~
+			clsrcreq = ~0 0 0 0 0 0 0~
+	END
+END
+
+//dummy kit for CharGen______________________________________________________________
+
+/*
+ADD_KIT ~D5_ZMANA_SORCERER~
+
+//WEAPON PROFICIENCIES________________________________________________________________
+//11                                            T   S           F   Q             S S
+//10          	 		L S                     W   C           L   U             W I
+//9     	       		A M             B L S   O   I   W       A   A             O N
+//8     	       		R A             A O H   H   M   A       I   R C   S       R G
+//7     	       		G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6     	       		E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5     	       		S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4     	       		W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3     	       		O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2     	       		R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1     	       		D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+~D5_ZMANA_SORCERER     	0 0 0 0 0 0 0 0~
+~D5_ZMANA_SORCERER      0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0 0 0 1 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+
+//MINIMUM KIT STATS_________________________________________________________________
+//  	               STR DEX CON INT WIS CHR
+~D5_ZMANA_SORCERER      0   0   0   0   0   0~
+
+//KIT STAT MODIFIERS________________________________________________________________
+//      	           STR DEX CON INT WIS CHR
+~D5_ZMANA_SORCERER      0   0   0   0   0   0~
+
+//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
+//          	       STR DEX CON INT WIS CHR
+~D5_ZMANA_SORCERER      0   0   0   0   0   0~
+
+//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
+//              	   STR DEX CON INT WIS CHR
+~D5_ZMANA_SORCERER      0   0   0   0   0   0~
+
+//ALIGNMENT RESTRICTIONS____________________________________________________________
+//                 	  LG LN LE NG TN NE CG CN CE
+~D5_ZMANA_SORCERER     1  1  1  1  1  1  1  1  1~
+
+//DUAL CLASS OPTIONS________________________________________________________________
+//      	           	FT CL MA TH DR RA
+~D5_ZMANA_SORCERER       0  0  0  0  0  0~
+
+//KIT ABILITIES 2DA FILE______________________________________________________________
+~override/d5_zmana.2da~
+
+//RACIAL KIT AVAILABILITY_____________________________________________________________
+~K_S_E K_S_H K_S_HE~
+
+//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
+//CLASSES: Mage = 1, Fighter = 2, Cleric = 3, Thief = 4, Bard = 5
+//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
+//         Monk = 20, FC = 8, CT = 15, CR = 18, FM = 7, CM = 14, MT = 13
+~0x00004000 19~
+
+//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
+~So0~
+
+//TOB STARTING EQUIPMENT_____________________________________________________________
+~CHAN09	* HELM07 BAG26 RING06 RING31 * BOOT01 AMUL20 BRAC10 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 HAMM07 SW1H27 STAF08~
+
+//CHARACTER CREATION KIT DESCRIPTION________________________________________________
+SAY @17081
+SAY @17082
+SAY @17083
+
+//EE KIT EXTRAS_____________________________________________________________________
+// 
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	LAF fl#add_kit_ee
+		INT_VAR
+			briefdesc = RESOLVE_STR_REF (@17083)
+		STR_VAR
+			kit_name = D5_ZMANA_SORCERER   
+			clswpbon = ~0 0 3~
 			hpclass = ~HPWIZ~
 			clsrcreq = ~1 1 1 0 0 1 0~
 	END
 END
-
-//__________________________________________________________________________________
-
-
-/*
-plan:
-- d5ssplz# does 172 (borrow & combine from srci#), and 326 for d5slot#x
-- d5slot#x triggers all EFFs according to stat values (borrow & combine from srci#)
-- EFFs 171 innate clones
-- innate clones cast real wiz spells???  <--- DECISION (I think, no for now)
-- innate clones reduce appropriate stat
-- innate clones cast d5ssplz# on 1-sec delay, where # = level
-
-- 206 against all EFFs at chargen
-- learn_spell = 321 206_spell, and 171 real_spell
-
-- 232 from chargen
-- just does 326 for refresh
-- refresh does 321 on stat reductions, then casts d5ssplz on 1-sec delay
 */
+
+//class/kit switch__________________________________________________________________
+//
+COPY ~ManaSorc/data/mana_sorcerer/d5ymana.spl~ ~override~
+COPY ~ManaSorc/data/mana_sorcerer/d5ymana.eff~ ~override~
+
+COPY ~ManaSorc/data/mana_sorcerer/d5msplbk.bam~ ~override~
+COPY ~ManaSorc/data/mana_sorcerer/d5zmana.spl~ ~override~
+  SAY NAME1 @17085
+  SAY UNIDENTIFIED_DESC @17085
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 location = 4 STR_VAR icon = ~d5msplbk~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5zmana~ END
+COPY ~ManaSorc/data/mana_sorcerer/d5zmana.eff~ ~override~
+COPY ~ManaSorc/data/mana_sorcerer/d5zmana.cre~ ~override~
+COMPILE ~ManaSorc/data/mana_sorcerer/d5zmana.baf~
+COMPILE ~ManaSorc/data/mana_sorcerer/d5zmana.d~
+
+ACTION_IF (NOT FILE_EXISTS_IN_GAME ~clabma01.2da~) THEN BEGIN
+  COPY ~ManaSorc/data/core/BLANKCLAB.2da~ ~override/clabma01.2da~ 		//generate undefined clab file
+END 
+
+APPEND ~clabma01.2da~ ~SWITCH      AP_D5YMANA  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+
+
+//make all spells unusable by the mage kit__________________________________________
+//
+// set usability to beastmaster kit above
+// set flag on all wizard spells, here
+//
+COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
+  PATCH_IF (SOURCE_SIZE > 0x71) BEGIN
+	READ_SHORT 0x1c spell_type
+	READ_LONG 0x34 spell_level
+	PATCH_IF (spell_type = 1) && (spell_level > 0) BEGIN
+//	  READ_BYTE 0x20 exclude_3
+	  WRITE_BYTE 0x20 (THIS BOR 0b00000010)
+	END
+  END
+IF_EXISTS BUT_ONLY
+
 
 //get kit identifiers_________________________________________________________________
 //
@@ -134,7 +237,7 @@ OUTER_SET mana_sorcerer_code = (0x4000 + %D5_MANA_SORCERER%)
 //known spells table__________________________________________________________________
 //
 ACTION_IF !(FILE_EXISTS_IN_GAME ~QD_SPLSRCKN.2da~) BEGIN
-	COPY_EXISTING ~SPLSRCKN.2da~ ~override/QD_SPLSRCKN.2da~ //save a copy of the existing sorcerer spell progression 
+	COPY_EXISTING ~SPLSRCKN.2da~ ~override/QD_SPLSRCKN.2da~ 	//save a copy of the existing sorcerer spell progression 
 END
 
 //add spell slot stat checks to SPLPROT_______________________________________________
@@ -201,13 +304,13 @@ END
 ACTION_IF !(FILE_EXISTS_IN_GAME ~d50wspl.2da~) BEGIN
  OUTER_SET 0wspl = 0
  COPY ~ManaSorc/lib/d5_base.spl~ ~override/d50wspl.spl~
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = EVAL ~SPWI110~ END
-  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = EVAL ~SPWI908~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~SPWI110~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~SPWI908~ END
   PATCH_IF !(MOD_IS_INSTALLED ~TomeAndBlood.tp2~ ~55~) BEGIN
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = EVAL ~SPWI420~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = EVAL ~SPWI710~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = EVAL ~SPWI809~ END
-	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = EVAL ~SPWI617~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~SPWI420~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~SPWI710~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~SPWI809~ END
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~SPWI617~ END
   END
 END
 
@@ -328,17 +431,17 @@ COPY ~ManaSorc/data/multi_sorcerers/d5msorc.itm~ ~override/d5mana.itm~			//	lear
   SAY NAME2 @17021
   SAY UNIDENTIFIED_DESC @17022
   SAY IDENTIFIED_DESC @17022
-  LPF ALTER_ITEM_HEADER INT_VAR target = 7 speed = 0 STR_VAR icon = ~spcl919b~ END
+  LPF ALTER_ITEM_HEADER INT_VAR target = 7 speed = 0 STR_VAR icon = ~d5msplbk~ END
 
 COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5mana.spl~
   SAY NAME1 @17050
   SAY UNIDENTIFIED_DESC @17050
   WRITE_SHORT 0x1c 4
-  LPF ALTER_SPELL_HEADER INT_VAR target = 5 location = 4 STR_VAR icon = ~spcl919b~ END
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 location = 4 STR_VAR icon = ~d5msplbk~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 143 target = 1 parameter1 = 14 timing = 9 STR_VAR resource = ~d5mana~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5mana~ END
 
-APPEND ~d5_mana.2da~ ~LEARNSPLS   GA_D5MANA   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
+APPEND ~d5_zmana.2da~ ~LEARNSPLS   GA_D5MANA   ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 
 //clone arcane spells_________________________________________________________________
