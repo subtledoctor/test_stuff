@@ -334,7 +334,7 @@ OUTER_FOR (pts = 1; pts < 75; ++pts) BEGIN
   COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5mpts%pts%.spl~
 END
 
-COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5ssplz.spl~
+COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5mnplz.spl~
   FOR (pts = 1; pts < 75; ++pts) BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 326 target = 1 parameter1 = (%pts%) parameter2 = %tracking_points% timing = 1 STR_VAR resource = EVAL ~d5mpts%pts%~ END
   END
@@ -437,6 +437,7 @@ COPY ~ManaSorc/data/multi_sorcerers/d5msorc.itm~ ~override/d5mana.itm~			//	lear
   SAY UNIDENTIFIED_DESC @17022
   SAY IDENTIFIED_DESC @17022
   LPF ALTER_ITEM_HEADER INT_VAR target = 7 speed = 0 STR_VAR icon = ~d5msplbk~ END
+  LPF ALTER_EFFECT INT_VAR match_opcode = 146 STR_VAR resource = ~d5mnsrc~ END
 
 COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5mana.spl~
   SAY NAME1 @17050
@@ -451,29 +452,29 @@ APPEND ~d5_zmana.2da~ ~LEARNSPLS   GA_D5MANA   ****        ****        ****     
 
 //clone arcane spells_________________________________________________________________
 //
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5wclons.2da~) BEGIN
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5mnclon.2da~) BEGIN
   OUTER_SET wclons = 1
 END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5wclons.2da~) BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5mnclon.2da~) BEGIN
   OUTER_SET wclons = 0
-<<<<<<<< d5/d5wclons.2da
+<<<<<<<< d5/d5mnclon.2da
 2DA V1.0 
 SPLRES
 		206		LEARN		EFF		INNATE	DISPLAY
 >>>>>>>> 
-COPY ~d5/d5wclons.2da~ ~override/d5wclons.2da~ 
+COPY ~d5/d5mnclon.2da~ ~override/d5mnclon.2da~ 
 END
 
-ACTION_IF (FILE_EXISTS_IN_GAME ~d5msorc.2da~) BEGIN
-  OUTER_SET msorc = 1
+ACTION_IF (FILE_EXISTS_IN_GAME ~d5mnsrc.2da~) BEGIN
+  OUTER_SET mnsrc = 1
 END
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5msorc.2da~) BEGIN
-  OUTER_SET msorc = 0
-<<<<<<<<  d5/d5msorc.2da
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5mnsrc.2da~) BEGIN
+  OUTER_SET mnsrc = 0
+<<<<<<<<  d5/d5mnsrc.2da
 2DA V1.0
 ****
             	     ResRef   Type>>>>>>>>
-COPY ~d5/d5msorc.2da~ ~override/d5msorc.2da~
+COPY ~d5/d5mnsrc.2da~ ~override/d5mnsrc.2da~
 END
 
 COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
@@ -502,7 +503,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 		END
 		INNER_PATCH_SAVE learn_spell ~%SOURCE_RES%~ BEGIN
 //		  REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~d5mx~
-		  REPLACE_TEXTUALLY ~%spell_res%~ ~%spell_res%M~
+		  REPLACE_TEXTUALLY ~%spell_res%~ ~%spell_res%N~
 		END
 		INNER_PATCH_SAVE spell_eff ~%SOURCE_RES%~ BEGIN
 		  REPLACE_TEXTUALLY ~^[Ss][Pp][Ww][Ii]~ ~D5MV~
@@ -514,10 +515,10 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 		TEXT_SPRINT real_spell ~%SOURCE_RES%~
 		INNER_ACTION BEGIN
 		  ACTION_IF wclons = 0 BEGIN
-			APPEND ~d5wclons.2da~ ~%SOURCE_RES%	%206_spell%	%learn_spell%	%spell_eff%	%innate_spell%	%real_spell% ~
+			APPEND ~d5mnclon.2da~ ~%SOURCE_RES%	%206_spell%	%learn_spell%	%spell_eff%	%innate_spell%	%real_spell% ~
 		  END
-		  ACTION_IF msorc = 0 BEGIN
-			APPEND ~d5msorc.2da~ ~sorcerer	%SOURCE_RES%	3~
+		  ACTION_IF mnsrc = 0 BEGIN
+			APPEND ~d5mnsrc.2da~ ~sorcerer	%SOURCE_RES%	3~
 		  END
 // make innates with cloned spell effects
 		  ACTION_IF NOT FILE_EXISTS_IN_GAME ~%innate_spell%.spl~ BEGIN
@@ -630,7 +631,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 //		  	LPF ADD_SPELL_EFFECT INT_VAR opcode = 309 target = 1 parameter1 = 1 parameter2 = 0 timing = 9 STR_VAR resource = EVAL ~%real_spell%~ END
 		  	LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter1 = 0 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5msplz~ END
 // make copy of learn spell for kjeron's UI system (eventually, just rename the learn spell to this name)
-//		  COPY_EXISTING ~%learn_spell%.spl~ ~override/%spell_res%M.spl~
+//		  COPY_EXISTING ~%learn_spell%.spl~ ~override/%spell_res%N.spl~
 // add 172 to d5msplz#
 		  COPY_EXISTING ~d5msplz.spl~ ~override~
 			LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 172 target = 1 timing = 9 STR_VAR resource = EVAL ~%innate_spell%~ END
@@ -701,7 +702,7 @@ BUT_ONLY
 
 //set up spell learn UI screens_______________________________________________________
 //
-ACTION_IF !(FILE_EXISTS_IN_GAME ~d5msorcX.2da~) BEGIN
+ACTION_IF !(FILE_EXISTS_IN_GAME ~d5mnsrcX.2da~) BEGIN
 
  INCLUDE ~ManaSorc/lib/sequencer_menu.tpa~
 
@@ -711,16 +712,16 @@ ACTION_IF !(FILE_EXISTS_IN_GAME ~d5msorcX.2da~) BEGIN
 	tip = RESOLVE_STR_REF (~Spell Selection~)
 	desc = RESOLVE_STR_REF (~This ability allows you to learn new spells~)
   STR_VAR 
-	resref = ~d5msorc~
-	spelllist = ~d5msorc~
+	resref = ~d5mnsrc~
+	spelllist = ~d5mnsrc~
 	spelltable = ~QD_SPLSRCKN~
 	icon = ~spcl919b~
 	title = ~Spell Selection~
 	label = ~Select a spell to learn~
-	subspell = ~M~
+	subspell = ~N~
  END
 
- COPY_EXISTING ~d5msorc.2da~ ~override/d5msorcX.2da~
+ COPY_EXISTING ~d5mnsrc.2da~ ~override/d5mnsrcX.2da~
 
 END
 

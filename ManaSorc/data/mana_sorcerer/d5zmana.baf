@@ -9,7 +9,7 @@ END
 
 IF
 	Class(LastSummonerOf(Myself),19)
-	Global("D5_MSORC","GLOBAL",1)
+	Global("D5_MNSRC","GLOBAL",1)
 THEN
 	RESPONSE #100
 	ChangeClass(LastSummonerOf(Myself),MAGE)
@@ -18,13 +18,13 @@ END
 
 IF
 	Class(LastSummonerOf(Myself),1)
-	Global("D5_MSORC","GLOBAL",1)
+	Global("D5_MNSRC","GLOBAL",1)
 THEN
 	RESPONSE #100
 	Wait(1)
 	ActionOverride(LastSummonerOf(Myself),AddKit(D5_MANA_SORCERER))
 	ActionOverride(LastSummonerOf(Myself),ForceSpellRES("d5mana",Myself))
-	SetGlobal("D5_MSORC","GLOBAL",0)
+	SetGlobal("D5_MNSRC","GLOBAL",0)
 	SetNumTimesTalkedTo(1)
 	DestroySelf()
 END
