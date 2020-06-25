@@ -373,6 +373,13 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5mana1.spl~ BEGIN
   END
 END
 */
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5man4a.spl~ BEGIN
+  ACTION_FOR_EACH let IN ~a~ ~b~ ~c~ ~d~ ~e~ ~f~ ~g~ ~h~ ~i~ ~j~ /*~k~ ~l~ ~m~ ~n~ ~o~ ~p~ ~q~ ~r~ ~s~ ~t~*/ BEGIN
+	COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5man4%let%.spl~
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 95 target = 1 parameter1 = 4 parameter2 = 0 timing = 9 END
+	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~d5man4%let%~ END
+  END
+END
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5man3a.spl~ BEGIN
   ACTION_FOR_EACH let IN ~a~ ~b~ ~c~ ~d~ ~e~ ~f~ ~g~ ~h~ ~i~ ~j~ ~k~ ~l~ ~m~ ~n~ ~o~ ~p~ ~q~ ~r~ ~s~ ~t~ BEGIN
 	COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5man3%let%.spl~
@@ -381,7 +388,7 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5man3a.spl~ BEGIN
   END
 END
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5man2a.spl~ BEGIN
-  ACTION_FOR_EACH let IN ~a~ ~b~ ~c~ ~d~ ~e~ ~f~ ~g~ ~h~ ~i~ ~j~ ~k~ ~l~ ~m~ ~n~ ~o~ ~p~ ~q~ ~r~ ~s~ ~t~ BEGIN
+  ACTION_FOR_EACH let IN ~a~ /*~b~ ~c~ ~d~ ~e~ ~f~ ~g~ ~h~ ~i~ ~j~ ~k~ ~l~ ~m~ ~n~ ~o~ ~p~ ~q~ ~r~ ~s~ ~t~*/ BEGIN
 	COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5man2%let%.spl~
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 95 target = 1 parameter1 = 2 parameter2 = 0 timing = 9 END
 	  LPF ADD_SPELL_EFFECT INT_VAR opcode = 206 target = 1 parameter1 = (0 - 1) timing = 9 STR_VAR resource = EVAL ~d5man2%let%~ END
@@ -390,6 +397,8 @@ END
 
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5man-1.spl~ BEGIN
   COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5man-1.spl~
+	LPF ADD_SPELL_EFFECT INT_VAR opcode = 95 target = 1 parameter1 = (0 - 1) parameter2 = 0 timing = 0 duration = 126144000 END
+  COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5man_1.spl~
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 95 target = 1 parameter1 = (0 - 1) parameter2 = 0 timing = 0 duration = 126144000 END
 END
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5man-2.spl~ BEGIN
@@ -425,8 +434,7 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5man-9.spl~ BEGIN
 	LPF ADD_SPELL_EFFECT INT_VAR opcode = 95 target = 1 parameter1 = (0 - 9) parameter2 = 0 timing = 0 duration = 126144000 END
 END
 
-APPEND ~d5_mana.2da~ ~MANA_PTS    AP_D5MAN3A  AP_D5MAN3B  AP_D5MAN3C  AP_D5MAN3D  AP_D5MAN3E  AP_D5MAN3F  AP_D5MAN3G  AP_D5MAN3H  AP_D5MAN3I  AP_D5MAN3J  AP_D5MAN3K  AP_D5MAN3L  AP_D5MAN3M  AP_D5MAN3N  AP_D5MAN3O  AP_D5MAN3P  AP_D5MAN3Q  AP_D5MAN3R  AP_D5MAN3S  AP_D5MAN3T  AP_D5MAN2A  AP_D5MAN2B  AP_D5MAN2C  AP_D5MAN2D  AP_D5MAN2E  AP_D5MAN2F  AP_D5MAN2G  AP_D5MAN2H  AP_D5MAN2I  AP_D5MAN2J  AP_D5MAN2K  AP_D5MAN2L  AP_D5MAN2M  AP_D5MAN2N  AP_D5MAN2O  AP_D5MAN2P  AP_D5MAN2Q  AP_D5MAN2R  AP_D5MAN2S  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** 
-~
+APPEND ~d5_mana.2da~ ~MANA_PTS    AP_D5MAN3A  AP_D5MAN3B  AP_D5MAN3C  AP_D5MAN3D  AP_D5MAN3E  AP_D5MAN3F  AP_D5MAN3G  AP_D5MAN3H  AP_D5MAN3I  AP_D5MAN3J  AP_D5MAN4A  AP_D5MAN4B  AP_D5MAN4C  AP_D5MAN4D  AP_D5MAN4E  AP_D5MAN4F  AP_D5MAN4G  AP_D5MAN4H  AP_D5MAN4I  AP_D5MAN4J  AP_D5MAN3K  AP_D5MAN3L  AP_D5MAN3M  AP_D5MAN3N  AP_D5MAN3O  AP_D5MAN3P  AP_D5MAN3Q  AP_D5MAN3R  AP_D5MAN3S  AP_D5MAN2A  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 
 //initialize ability and learn item___________________________________________________
@@ -483,6 +491,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
   READ_SHORT 0x1c spell_type 
   READ_BYTE 0x25 spell_school
   READ_LONG 0x34 spell_level
+  SET one_level_less = (spell_level - 1)
   PATCH_IF (~%SOURCE_RES%~ STRING_MATCHES_REGEXP ~[Ss][Pp][Ww][Ii][1-9][0-5][0-9]~ = 0) && (spell_type = 1) && !(spell_school = 10) && !(~%SOURCE_RES%~ STRING_EQUAL_CASE ~SPWI908~) && !(~%SOURCE_RES%~ STRING_EQUAL_CASE ~SPWI110~) && !(~%SOURCE_RES%~ STRING_EQUAL_CASE ~SPWI124~) BEGIN
 	SNPRINT (0 - 3) spell_num ~%SOURCE_RES%~
 	SET go = 1
@@ -550,11 +559,15 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 2 power = %spell_level% parameter2 = 1 timing = 9 STR_VAR resource = EVAL ~%real_spell%~ END
 			  END
 			  PATCH_IF !(MOD_IS_INSTALLED ~tomeandblood.tp2~ ~62~) BEGIN
-				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5man-%spell_level%~ END
+				LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5man_1~ END
+				PATCH_IF (%spell_level% > 1) BEGIN
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5man-%one_level_less%~ END
+				END
 			  END
 			  PATCH_IF (MOD_IS_INSTALLED ~tomeandblood.tp2~ ~62~) BEGIN
 				PATCH_IF (%spell_level% > 1) BEGIN
-				  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5man-%spell_level%~ END
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = ~d5man_1~ END
+				  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 1 STR_VAR resource = EVAL ~d5man-%one_level_less%~ END
 				END
 			  END
 			  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5msplz~ END
@@ -636,7 +649,7 @@ COPY_EXISTING_REGEXP GLOB ~^.+\.spl$~ ~override~
 		  COPY_EXISTING ~d5msplz.spl~ ~override~
 			LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 172 target = 1 timing = 9 STR_VAR resource = EVAL ~%innate_spell%~ END
 // generate slot#x spells
-// ***** this all needs to change... note xactly sure how!
+// ***** this all needs to change... not exactly sure how!
 		  COPY_EXISTING ~d5mpts1.spl~ ~override~
 			LPF ADD_SPELL_EFFECT INT_VAR opcode = 177 target = 1 parameter2 = 2 timing = 9 STR_VAR resource = EVAL ~%spell_eff%~ END
 		  BUT_ONLY
@@ -762,6 +775,7 @@ COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5mnpt.spl~
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5mrfrsh.spl~ BEGIN
  COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5mrfrsh.spl~
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 93 target = 1 parameter1 = 1 parameter2 = 1 timing = 1 END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5man_1~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5man-1~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5man-2~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5man-3~ END
@@ -773,6 +787,22 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~d5mrfrsh.spl~ BEGIN
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5man-9~ END
   LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5msplz~ END
 END
+
+
+// restorative meditation ability_____________________________________________________
+COPY ~ManaSorc/data/mana_sorcerer/d5prmed.bam~ ~override~
+COPY ~ManaSorc/lib/d5_base.spl~ ~override/d5msmed.spl~
+  SAY NAME1 @17087
+  SAY UNIDENTIFIED_DESC @17088
+  WRITE_ASCII 0x3a ~d5prmed~ #8
+  LPF ALTER_SPELL_HEADER INT_VAR target = 5 location = 4 STR_VAR icon = ~d5prmed~ END
+  WRITE_BYTE 0x1a (THIS BOR 0b00000001) 	//	set as non-combat ability
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 321 target = 1 timing = 9 STR_VAR resource = ~d5man_1~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 146 target = 1 parameter2 = 1 timing = 4 duration = 1 STR_VAR resource = ~d5msplz~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 172 target = 1 timing = 9 STR_VAR resource = ~d5msmed~ END
+  LPF ADD_SPELL_EFFECT INT_VAR opcode = 171 target = 1 timing = 9 STR_VAR resource = ~d5msmed~ END
+
+APPEND ~d5_mana.2da~ ~RESTORE     GA_D5MSMED  ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        ****        **** ~
 
 
 //make sequencer/contingency scrolls unusable by mana sorcerers_______________________

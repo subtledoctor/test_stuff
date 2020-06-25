@@ -601,6 +601,8 @@ Disadvantages:
 - May not use Sequencer or Contingency spells.
 ~
 @17085 = ~Change casting method~
+@17087 = ~Restorative Meditation~
+@17088 = ~Restorative Meditation: this ability allows a psion to rest and meditate between combat encounters, recovering a portion of <PRO_HISHER> Psionic Strength Point.~
 @17091 = ~How would you like to cast spells?~
 @17092 = ~With normal sorcerer spell slots~
 @17093 = ~With mana points~
