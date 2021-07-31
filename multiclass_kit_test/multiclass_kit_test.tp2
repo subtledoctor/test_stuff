@@ -1,0 +1,52 @@
+BACKUP ~multiclass_kit_test/backup~
+AUTHOR ~SubtleD~
+
+VERSION ~0.1~
+
+// README ~multiclass_kit_test/readme-M_n_G.html~
+
+ALWAYS
+
+	INCLUDE ~multiclass_kit_test/lib/misc_functions.tpa~
+
+	INCLUDE ~multiclass_kit_test/lib/hla_actions.tpa~
+
+	INCLUDE ~multiclass_kit_test/lib/fl#add_kit_ee.tpa~
+
+	INCLUDE ~multiclass_kit_test/lib/fnp_compatibility.tpa~
+
+	INCLUDE ~multiclass_kit_test/lib/extra_kit.tpa~
+
+	LAF fix_kitlist_missing_ids END
+	
+END
+
+// ASK_EVERY_COMPONENT
+
+LANGUAGE
+  ~English~
+  ~english~
+  ~multiclass_kit_test/language/english/setup.tra~
+
+
+
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//						 		  MULTICLASS KITS
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+BEGIN ~install multiclass kit test~
+DESIGNATED 1
+REQUIRE_PREDICATE (GAME_IS ~bgee bg2ee eet iwdee~) @4
+
+INCLUDE ~multiclass_kit_test/lib/qd_multiclass.tpa~
+
+INCLUDE ~multiclass_kit_test/components/test_multiclass_kits.tpa~
+
+//__________________________________________________________________________________
+
+
+

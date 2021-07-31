@@ -1,0 +1,434 @@
+
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+//
+//								MULTICLASS KITS
+//__________________________________________________________________________________
+//__________________________________________________________________________________
+
+
+
+
+//ENABLE MORE MULTICLASSES__________________________________________________________
+//
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
+		SET_2DA_ENTRY 34 1 8 ~1~
+		SET_2DA_ENTRY 35 1 8 ~1~
+		SET_2DA_ENTRY 36 1 8 ~1~
+		SET_2DA_ENTRY 37 1 8 ~1~
+		SET_2DA_ENTRY 46 1 8 ~1~
+		SET_2DA_ENTRY 47 1 8 ~1~
+		SET_2DA_ENTRY 48 1 8 ~1~
+		SET_2DA_ENTRY 49 1 8 ~1~
+		SET_2DA_ENTRY 50 1 8 ~1~
+		SET_2DA_ENTRY 51 1 8 ~1~
+//		SET_2DA_ENTRY 25 2 8 ~1~
+		SET_2DA_ENTRY 35 2 8 ~1~
+		SET_2DA_ENTRY 47 2 8 ~1~
+		SET_2DA_ENTRY 48 2 8 ~1~
+		SET_2DA_ENTRY 50 2 8 ~1~
+		SET_2DA_ENTRY 51 2 8 ~1~
+		SET_2DA_ENTRY 48 3 8 ~1~
+		SET_2DA_ENTRY 48 4 8 ~1~
+		SET_2DA_ENTRY 35 5 8 ~1~
+		SET_2DA_ENTRY 48 5 8 ~1~
+	BUT_ONLY
+END
+ACTION_IF ENGINE_IS ~tob~ THEN BEGIN
+	COPY_EXISTING ~CLSRCREQ.2da~ ~override~
+		SET_2DA_ENTRY 11 1 7 ~1~
+		SET_2DA_ENTRY 12 1 7 ~1~
+		SET_2DA_ENTRY 13 1 7 ~1~
+		SET_2DA_ENTRY 14 1 7 ~1~
+		SET_2DA_ENTRY 15 1 7 ~1~
+		SET_2DA_ENTRY 16 1 7 ~1~
+		SET_2DA_ENTRY 17 1 7 ~1~
+		SET_2DA_ENTRY 18 1 7 ~1~
+		SET_2DA_ENTRY 19 1 7 ~1~
+		SET_2DA_ENTRY 20 1 7 ~1~
+//		SET_2DA_ENTRY 5 2 7 ~1~
+		SET_2DA_ENTRY 12 2 7 ~1~
+		SET_2DA_ENTRY 15 2 7 ~1~
+		SET_2DA_ENTRY 16 2 7 ~1~
+		SET_2DA_ENTRY 18 2 7 ~1~
+		SET_2DA_ENTRY 20 2 7 ~1~
+		SET_2DA_ENTRY 16 3 7 ~1~
+		SET_2DA_ENTRY 16 4 7 ~1~
+		SET_2DA_ENTRY 12 5 7 ~1~
+		SET_2DA_ENTRY 16 5 7 ~1~
+	BUT_ONLY
+END
+//___________________________________________________________________________________
+
+
+
+//ADD SPELLFILCHER____________________________________________________________________
+//
+LAF check_kit_conflict END
+
+ADD_KIT ~D5FILCH~
+
+//WEAPON PROFICIENCIES________________________________________________________________
+//11                                   T   S           F   Q             S S
+//10           L S                     W   C           L   U             W I
+//9            A M             B L S   O   I   W       A   A             O N
+//8            R A             A O H   H   M   A       I   R C   S       R G
+//7            G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6            E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5            S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4            W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3            O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2            R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1            D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+~D5FILCH       0 0 0 0 0 0 0 0~
+~D5FILCH       0 0 0 0 0 0 0 0 0 1 1 0 0 1 1 1 0 1 0 0 0 0 1 1 1 1 1 1 1 1 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+
+//MINIMUM KIT STATS_________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5FILCH    	   0   12  0   12  0   0~
+
+//KIT STAT MODIFIERS________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5FILCH           0   0   0   0   0   0~
+
+//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5FILCH           0   15  0   0   0   0~
+
+//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5FILCH  	       0   15  0   0   0   0~
+
+//ALIGNMENT RESTRICTIONS____________________________________________________________
+//                 LG LN LE NG TN NE CG CN CE
+~D5FILCH           0  0  0  1  1  1  1  1  0~
+
+//DUAL CLASS OPTIONS________________________________________________________________
+//                 FT CL MA TH DR RA
+~D5FILCH           0  0  0  0  0  0~
+
+//KIT ABILITIES 2DA FILE______________________________________________________________
+~multiclass_kit_test/mc/d5_filch.2da~
+
+//RACIAL KIT AVAILABILITY_____________________________________________________________
+~K_MT_H K_MT_E K_MT_HE K_MT_G~
+
+//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
+//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
+//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
+//         Monk = 20
+~0x00004000 13~
+
+//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
+~MT0~
+
+//TOB STARTING EQUIPMENT_____________________________________________________________
+~LEAT14	* HELM07 BAG25 RING06 RING31 CLCK02 BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 BOW18 SW1H39 STAF08~
+
+//CHARACTER CREATION KIT DESCRIPTION________________________________________________
+SAY @5217
+SAY @5218
+SAY @5219
+//__________________________________________________________________________________
+
+//EE KIT EXTRAS_____________________________________________________________________
+//
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	LAF fl#add_kit_ee
+		INT_VAR
+			briefdesc = RESOLVE_STR_REF (@5219)
+		STR_VAR
+			kit_name = D5FILCH
+			backstab = ~1 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4~
+			clswpbon = ~0 0 3~
+			thiefskl = ~50 25~
+	END
+END
+//____________________________________________________________________________________
+
+//SPELLFILCHER ABILITY FILES__________________________________________________________
+//
+COPY ~multiclass_kit_test/mc/d5_filch.2da~ ~override~
+COPY ~multiclass_kit_test/misc/d5ssvbo.spl~ ~override~
+	SAY NAME1 @15
+COPY ~multiclass_kit_test/mc/d5flch1.spl~ ~override~
+	SAY NAME1 @5213
+	SAY NAME2 @5213
+	SAY UNIDENTIFIED_DESC @5214
+COPY ~multiclass_kit_test/mc/d5flch2.spl~ ~override~
+	SAY NAME1 @5215
+	SAY NAME2 @5215
+	SAY UNIDENTIFIED_DESC @5216
+COPY ~multiclass_kit_test/mc/d5flch3.spl~ ~override~
+COPY ~multiclass_kit_test/mc/d5flch4.spl~ ~override~
+COPY ~multiclass_kit_test/mc/d5_flch5.spl~ ~override~
+COPY ~multiclass_kit_test/mc/d5_flch4.eff~ ~override~
+COPY ~multiclass_kit_test/mc/d5_flch5.eff~ ~override~
+
+COPY ~multiclass_kit_test/mc/d5_filch.itm~ ~override~
+	SAY NAME1 @5211
+	SAY NAME2 @5211
+	SAY UNIDENTIFIED_DESC @5212
+	SAY IDENTIFIED_DESC @5212
+COPY ~multiclass_kit_test/mc/d5_filch.spl~ ~override~
+	SAY NAME1 @9
+COPY ~multiclass_kit_test/mc/d5_filch.cre~ ~override~
+COMPILE ~multiclass_kit_test/mc/d5_filch.baf~
+//__________________________________________________________________________________
+
+//MULTICLASS KIT______________________________________________________________________
+//
+LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5FILCH~ 
+		kit_clab = ~d5_filch~
+		base_class = ~T~
+END 
+//____________________________________________________________________________________
+
+
+
+//ADD LOREMASTER______________________________________________________________________
+//
+LAF check_kit_conflict END
+
+ADD_KIT ~D5_LOREMASTER~
+
+//WEAPON PROFICIENCIES________________________________________________________________
+//11                                      T   S           F   Q             S S
+//10              L S                     W   C           L   U             W I
+//9               A M             B L S   O   I   W       A   A             O N
+//8               R A             A O H   H   M   A       I   R C   S       R G
+//7               G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6               E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+~D5_LOREMASTER    0 0 0 0 0 0 0 0~
+~D5_LOREMASTER    0 0 0 0 0 0 0 0 0 1 1 1 0 0 1 1 1 1 0 0 0 0 1 1 0 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+
+//MINIMUM KIT STATS_________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_LOREMASTER     0   12  0   15  0   0~
+
+//KIT STAT MODIFIERS________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_LOREMASTER     0   0   0   0   0   0~
+
+//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_LOREMASTER     0   17  0   17  0   0~
+
+//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_LOREMASTER     0   15  0   15  0   0~
+
+//ALIGNMENT RESTRICTIONS____________________________________________________________
+//                 LG LN LE NG TN NE CG CN CE
+~D5_LOREMASTER     1  1  1  1  1  1  0  0  0~
+
+//DUAL CLASS OPTIONS________________________________________________________________
+//                 FT CL MA TH DR RA
+~D5_LOREMASTER     0  0  0  0  0  0~
+
+//KIT ABILITIES 2DA FILE______________________________________________________________
+~multiclass_kit_test/mc/d5_lorma.2da~
+
+//RACIAL KIT AVAILABILITY_____________________________________________________________
+~K_MT_H K_MT_E K_MT_HE K_MT_G~
+
+//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
+//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
+//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
+//         Monk = 20
+~0x00004000 13~
+
+//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
+~Ma0~
+
+//TOB STARTING EQUIPMENT_____________________________________________________________
+~LEAT14	* HELM07 BAG25 RING06 RING31 CLCK02 BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 BOW18 SW1H39 STAF08~
+
+//CHARACTER CREATION KIT DESCRIPTION________________________________________________
+SAY @5231
+SAY @5232
+SAY @5233
+//__________________________________________________________________________________
+
+//EE KIT EXTRAS_____________________________________________________________________
+//
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	LAF fl#add_kit_ee
+		INT_VAR
+			briefdesc = RESOLVE_STR_REF (@5233)
+		STR_VAR
+			kit_name = D5_LOREMASTER
+			backstab = ~1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1~
+			clasiskl = ~0 0 10 0 0 0 0~
+			clswpbon = ~0 0 3~
+			thiefskl = ~30 18~
+			thiefscl = ~0 100 100 100 100 100 0 0~
+			traplimt = 0
+			sneakatt = ~1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1~
+			crippstr = ~0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+	END
+END
+//____________________________________________________________________________________
+
+//LOREMASTER ABILITY FILES____________________________________________________________
+//
+COPY ~multiclass_kit_test/mc/d5_lorma.2da~ ~override~
+COPY ~multiclass_kit_test/misc/d5mglv1.spl~ ~override~
+	SAY NAME1 @6
+COPY ~multiclass_kit_test/mc/d5lorm1.spl~ ~override~
+	SAY NAME1 @4606
+	SAY UNIDENTIFIED_DESC @4606
+  WRITE_BYTE 0x27 0
+COPY ~multiclass_kit_test/misc/d5lor05.spl~ ~override~
+	SAY NAME1 @6
+
+COPY ~multiclass_kit_test/mc/d5_lorma.itm~ ~override~
+	SAY NAME1 @5234
+	SAY NAME2 @5234
+	SAY UNIDENTIFIED_DESC @5235
+	SAY IDENTIFIED_DESC @5235
+COPY ~multiclass_kit_test/mc/d5_lorma.spl~ ~override~
+	SAY NAME1 @9
+COPY ~multiclass_kit_test/mc/d5_lorma.cre~ ~override~
+COMPILE ~multiclass_kit_test/mc/d5_lorma.baf~
+//__________________________________________________________________________________
+
+//MULTICLASS KIT______________________________________________________________________
+//
+LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5_LOREMASTER~ 
+		kit_clab = ~d5_lorma~
+		base_class = ~T~
+END 
+//____________________________________________________________________________________
+
+
+
+//ADD THUG____________________________________________________________________________
+//
+LAF check_kit_conflict END
+
+ADD_KIT ~D5_THUG~
+
+//WEAPON PROFICIENCIES________________________________________________________________
+//11                                      T   S           F   Q             S S
+//10              L S                     W   C           L   U             W I
+//9               A M             B L S   O   I   W       A   A             O N
+//8               R A             A O H   H   M   A       I   R C   S       R G
+//7               G L           M S N O   A   I   R     H L   T R L H     2 D L 2                 E E E E E E E E E E E
+//6               E L       S   I T G R   N K T D H     A M   E O O O     H A E W E E E E E E E E X X X X X X X X X X X
+//5               S S   S B P   S A S T   D A A A A   S L O   R S N R   S A N W E X X X X X X X X T T T T T T T T T T T
+//4               W W   P L I   S R W S   E T R G M C P B R M S S G T D L N D E A T T T T T T T T R R R R R R R R R R R
+//3               O O B E U K A I D O W A D A W G M L E E N A T B B B A I D S A P R R R R R R R R A A A A A A A A A A A
+//2               R R O A N E X L S R O X S N A E E U A R I C A O O O R N E H P O A A A A A A A A 1 1 1 1 1 1 1 1 1 1 2
+//1               D D W R T D E E W D R E W A K R R B R D N E F W W W T G D I O N 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0
+~D5_THUG	      0 0 0 0 0 0 0 0~
+~D5_THUG	      0 0 0 0 0 0 0 0 0 2 2 0 0 2 2 2 0 2 0 0 0 0 2 2 2 2 2 2 2 0 2 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0~
+
+//MINIMUM KIT STATS_________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_THUG	       12  0   12  0   0   0~
+
+//KIT STAT MODIFIERS________________________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_THUG	       1   -1  0   -1  0   0~
+
+//REQUIREMENTS TO DUAL TO THIS KIT_________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_THUG	       17  0   17  0   0   0~
+
+//REQUIREMENTS TO DUAL FROM THIS KIT________________________________________________
+//                 STR DEX CON INT WIS CHR
+~D5_THUG	       15  0   15  0   0   0~
+
+//ALIGNMENT RESTRICTIONS____________________________________________________________
+//                 LG LN LE NG TN NE CG CN CE
+~D5_THUG	       0  0  0  0  1  1  0  1  1~
+
+//DUAL CLASS OPTIONS________________________________________________________________
+//                 FT CL MA TH DR RA
+~D5_THUG	       0  0  0  0  0  0~
+
+//KIT ABILITIES 2DA FILE______________________________________________________________
+~multiclass_kit_test/mc/d5_thug.2da~
+
+//RACIAL KIT AVAILABILITY_____________________________________________________________
+~K_FT_D K_FT_E K_FT_G K_FT_H K_FT_HE K_FT_HL K_FT_HO~
+
+//UNUSABLE FLAGS AND KIT BASE CLASS_________________________________________________
+//CLASSES: Mage = 1, Fighter = 2, Cleric=3, Thief = 4, Bard = 5
+//         Paladin 6, Druid = 11, Ranger = 12, Sorcerer = 19
+//         Monk = 20
+~0x00004000 9~
+
+//HIGH LEVEL ABILITIES ABBREVIATION_________________________________________________
+~FT0~
+
+//TOB STARTING EQUIPMENT_____________________________________________________________
+~LEAT14	* HELM07 BAG25 RING06 RING31 CLCK02 BOOT01 AMUL19 BRAC16 BELT06 AROW11,40 BULL03,40 BOLT06,40 POTN52,5 POTN04,2 POTN14,5 BOW18 SW1H39 STAF08~
+
+//CHARACTER CREATION KIT DESCRIPTION________________________________________________
+SAY @5341
+SAY @5342
+SAY @5343
+//__________________________________________________________________________________
+
+//EE KIT EXTRAS_____________________________________________________________________
+//
+ACTION_IF GAME_IS ~bgee bg2ee eet iwdee~ THEN BEGIN
+	LAF fl#add_kit_ee
+		INT_VAR
+			briefdesc = RESOLVE_STR_REF (@5343)
+		STR_VAR
+			kit_name = D5_THUG
+			clswpbon = ~1 0 3~
+			thiefskl = ~40 20~
+			thiefscl = ~100 0 100 100 100 0 0 0~
+			traplimt = 0
+	END
+END
+//____________________________________________________________________________________
+
+//THUG ABILITY FILES__________________________________________________________________
+//
+COPY ~multiclass_kit_test/mc/d5_thug.2da~ ~override~
+COPY ~multiclass_kit_test/misc/d5ntrap.spl~ ~override~
+
+COPY ~multiclass_kit_test/mc/d5_thug.itm~ ~override~
+	SAY NAME1 @5345
+	SAY NAME2 @5345
+	SAY UNIDENTIFIED_DESC @5346
+	SAY IDENTIFIED_DESC @5346
+COPY ~multiclass_kit_test/mc/d5_thug.spl~ ~override~
+	SAY NAME1 @9
+COPY ~multiclass_kit_test/mc/d5_thug.cre~ ~override~
+COMPILE ~multiclass_kit_test/mc/d5_thug.baf~
+//__________________________________________________________________________________
+
+//MULTICLASS KIT______________________________________________________________________
+//
+LAF qd_multiclass
+	STR_VAR
+		kit_name = ~D5_THUG~ 
+		kit_clab = ~d5_thug~
+		base_class = ~T~
+END 
+//____________________________________________________________________________________
+
+
+ACTION_IF (FILE_EXISTS_IN_GAME ~tem2601.sto~)THEN BEGIN
+	COPY_EXISTING ~tem2601.sto~ ~override~
+		ADD_STORE_ITEM ~d5_filch~ #0 #0 #0 ~identified~ #1
+		ADD_STORE_ITEM ~d5_lorma~ #0 #0 #0 ~identified~ #1
+		ADD_STORE_ITEM ~d5_thug~ #0 #0 #0 ~identified~ #1
+		BUT_ONLY
+END
