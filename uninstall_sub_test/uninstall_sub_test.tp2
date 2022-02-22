@@ -1,0 +1,29 @@
+BACKUP ~uninstall_sub_test/backup~
+AUTHOR ~SubtleD~
+
+VERSION ~1~
+
+
+//set all Vancian casters to use 5E system____________________________________________
+//
+BEGIN ~uninstall subcomponents test~
+DESIGNATED 100
+
+PRINT ~Component A is installed~
+
+//__________________________________________________________________________________
+
+BEGIN ~component B1~
+SUBCOMPONENT ~uninstall subcomponents test~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~uninstall_sub_test.tp2~ ~100~) ~missing requisite~
+
+PRINT ~Component B1 is installed~
+
+//__________________________________________________________________________________
+
+BEGIN ~component B2~
+SUBCOMPONENT ~uninstall subcomponents test~
+
+PRINT ~Component B2 is installed~
+
+//__________________________________________________________________________________
